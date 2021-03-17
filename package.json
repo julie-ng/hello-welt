@@ -5,11 +5,10 @@
   "license": "MIT",
   "private": true,
   "description": "",
-  "main": "app.js",
+  "main": "app/app.js",
   "scripts": {
     "start": "node app.js",
-    "help": "nodemon --help",
-    "dev": "NODE_ENV=development nodemon -w app.js -w home.hbs"
+    "dev": "NODE_ENV=development nodemon -w app"
   },
   "dependencies": {
     "fastify": "^3.14.0",
