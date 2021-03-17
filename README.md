@@ -18,6 +18,7 @@ The following variables can be configured
 | `HELLO_COLOR` | #ff5757 |
 | `EARTH_COLOR` | #57ffd1 |
 | `PORT` | 3000 |
+| `HOST` | `localhost` in development and `0.0.0.0` in production |
 
 ## Usage
 
@@ -53,6 +54,28 @@ which is a shortcut for
 
 ```
 NODE_ENV=development nodemon -w app app/app.js | pino-pretty
+```
+
+### Docker
+
+Pull the [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) public image from Docker Hub and then run it:
+
+```
+docker pull julieio/hello:latest
+docker run -p 3000:3000 julieio/hello:latest
+```
+
+Optionally - pass configuration via environment variables:
+
+```
+docker run -p 3000:3000 -e HELLO_NAME=Julie julieio/hello:latest
+```
+
+or build from scratch
+
+```
+docker build . -t hello-welt
+docker run -p 3000:3000 hello-welt
 ```
 
 ## References

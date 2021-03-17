@@ -12,7 +12,8 @@
   "main": "app/app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "NODE_ENV=development nodemon -w app | pino-pretty"
+    "dev": "NODE_ENV=development nodemon -w app | pino-pretty",
+    "app-version": "node -e \"console.log(require('./package.json').version)\""
   },
   "dependencies": {
     "fastify": "^3.14.0",

@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - 'dev'
+      - 'main'
+      - 'release'
+
+env:
+  imageName: 'julieio/hello'
+  imageTag: 'latest'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Determine Image Tag
+        if: github.ref == 'refs/heads/release'
+        run: echo "imageTag=$(npm run --silent app-version)" >> $GITHUB_ENV
+
+      - name: Output Image Tag
+        run: |
+          echo "${{ env.imageTag }}"
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ env.imageName }}:${{ env.imageTag }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

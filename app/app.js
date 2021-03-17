@@ -22,7 +22,7 @@ const appVersion = process.env.VERSION || require('./../package.json').version
 const greeting   = process.env.HELLO_GREETING || 'Hello'
 const name       = process.env.HELLO_NAME || 'Welt'
 const color      = process.env.HELLO_COLOR || '#ff5757'
-const earthColor = process.env.EARTH_COLOR || '#57ffd1'
+const earthColor = process.env.EARTH_COLOR || '#00c2ca'
 
 // Route
 
