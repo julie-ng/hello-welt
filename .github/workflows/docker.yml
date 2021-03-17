@@ -9,7 +9,7 @@ on:
 
 env:
   imageName: 'julieio/hello'
-  imageTag: 'latest'
+  imageTag: 'dev'
 
 jobs:
   docker:
