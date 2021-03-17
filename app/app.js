@@ -1,9 +1,7 @@
 // Fastify & Plugins
-
+const log = require('pino')({ level: 'info' })
 const path = require('path')
-const fastify = require('fastify')({
-  logger: true
-})
+const fastify = require('fastify')({ logger: log })
 
 fastify.register(
   require('fastify-helmet')
@@ -37,6 +35,10 @@ fastify.get('/', function (req, reply) {
 	})
 })
 
+fastify.get('/fail', function (req, reply) {
+  fastify.log('will fail') // Purposely trigger error for demos
+})
+
 // Listen Up
 
 fastify.listen(port, function (err, address) {
@@ -45,4 +47,27 @@ fastify.listen(port, function (err, address) {
     process.exit(1)
   }
   fastify.log.info(`Server listening on ${address}`)
+})
+
+// Error Handling
+
+async function closeGracefully(signal) {
+  log.warn(`Received signal to terminate: ${signal}`)
+  await fastify.close()
+  // await db.close() if we have a db connection in this app
+  // await other things we should cleanup nicely
+  process.exit()
+}
+
+process.on('SIGINT', closeGracefully)
+process.on('SIGTERM', closeGracefully)
+
+process.on('uncaughtException', err => {
+  log.error(`Uncaught Exception: ${err.message}`)
+  process.exit(1)
+})
+
+process.on('unhandledRejection', (reason, promise) => {
+  log.error('Unhandled rejection at ', promise, `reason: ${err.message}`)
+  process.exit(1)
 })

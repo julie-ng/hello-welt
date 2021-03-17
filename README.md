@@ -6,9 +6,22 @@ Simple Hello World [Fastify app](https://www.fastify.io/) for demos.
 
 _Earth icon by iconmonstr.com_
 
+## Configuration
+
+The following variables can be configured
+
+| Environment Variable | Default |
+|:--|:--|
+| `VERSION` | Version from `package.json` |
+| `HELLO_GREETING` | Hello |
+| `HELLO_NAME` | Welt |
+| `HELLO_COLOR` | #ff5757 |
+| `EARTH_COLOR` | #57ffd1 |
+| `PORT` | 3000 |
+
 ## Usage
 
-Install dependencies
+Install dependencies 
 
 ```bash
 npm install
@@ -22,15 +35,26 @@ npm start
 
 and then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Configuration
+### Local Development
 
-The following variables can be configured
+For local development, we will use [pino-pretty](https://github.com/pinojs/pino-pretty) to format logs with color
 
-| Environment Variable | Default |
-|:--|:--|
-| `VERSION` | Version from `package.json` |
-| `HELLO_GREETING` | Hello |
-| `HELLO_NAME` | Welt |
-| `HELLO_COLOR` | #ff5757 |
-| `EARTH_COLOR` | #57ffd1 |
-| `PORT` | 3000 |
+```
+npm install -g pino-pretty
+```
+
+We also also use [nodemon](https://nodemon.io/) to automatically restart the app when code changes. Use the `dev` command to put everything together
+
+```
+npm run dev
+```
+
+which is a shortcut for
+
+```
+NODE_ENV=development nodemon -w app app/app.js | pino-pretty
+```
+
+## References
+
+- [Heroku Blog: Let It Crash: Best Practices for Handling Node.js Errors on Shutdown](https://blog.heroku.com/best-practices-nodejs-errors) by Julián Duque
