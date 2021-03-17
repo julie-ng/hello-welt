@@ -1,6 +1,7 @@
 # hello-welt
 
-Simple Hello World [Fastify app](https://www.fastify.io/) for demos.
+- Simple Hello World [Fastify app](https://www.fastify.io/) for demos. 
+- Source for [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) Docker Image.
 
 <img src="./preview.png" alt="Hello Welt Preview" width="500">
 
@@ -22,9 +23,36 @@ The following variables can be configured
 
 ## Usage
 
-Install dependencies 
+You can use this Docker image directly in demos or use it as a simple [Node.js app](#nodejs-app)
+
+### Docker Image
+
+Pull the [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) public image from Docker Hub and then run it:
+
+```
+docker pull julieio/hello:latest
+docker run -p 3000:3000 julieio/hello:latest
+```
+
+Optionally - pass configuration via environment variables:
+
+```
+docker run -p 3000:3000 -e HELLO_NAME=Julie julieio/hello:latest
+```
+
+or build from scratch
+
+```
+docker build . -t hello-welt
+docker run -p 3000:3000 hello-welt
+```
+
+### Node.js App
+
+After cloning this repo, install dependencies 
 
 ```bash
+git clone https://github.com/julie-ng/hello-welt
 npm install
 ```
 
@@ -54,28 +82,6 @@ which is a shortcut for
 
 ```
 NODE_ENV=development nodemon -w app app/app.js | pino-pretty
-```
-
-### Docker
-
-Pull the [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) public image from Docker Hub and then run it:
-
-```
-docker pull julieio/hello:latest
-docker run -p 3000:3000 julieio/hello:latest
-```
-
-Optionally - pass configuration via environment variables:
-
-```
-docker run -p 3000:3000 -e HELLO_NAME=Julie julieio/hello:latest
-```
-
-or build from scratch
-
-```
-docker build . -t hello-welt
-docker run -p 3000:3000 hello-welt
 ```
 
 ## References
