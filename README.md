@@ -58,3 +58,5 @@ NODE_ENV=development nodemon -w app app/app.js | pino-pretty
 ## References
 
 - [Heroku Blog: Let It Crash: Best Practices for Handling Node.js Errors on Shutdown](https://blog.heroku.com/best-practices-nodejs-errors) by Julián Duque
+- [Snyk Blog: 10 best practices to containerize Node.js web applications with Docker](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/) by 
+Liran Tal and Yoni Goldberg

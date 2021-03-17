@@ -17,6 +17,7 @@ fastify.register(require('point-of-view'), {
 // Config & Defaults
 
 const port       = process.env.PORT || '3000'
+const host       = process.env.HOST || 'localhost'
 const appVersion = process.env.VERSION || require('./../package.json').version
 const greeting   = process.env.HELLO_GREETING || 'Hello'
 const name       = process.env.HELLO_NAME || 'Welt'
@@ -41,7 +42,7 @@ fastify.get('/fail', function (req, reply) {
 
 // Listen Up
 
-fastify.listen(port, function (err, address) {
+fastify.listen(port, host, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
