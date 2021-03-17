@@ -2,9 +2,11 @@
 
 .git
 .gitignore
+.github
 
 node_modules
 *.log
 
 Dockerfile
 .dockerignore
+preview.png
