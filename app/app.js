@@ -1,3 +1,5 @@
+// Fastify & Plugins
+
 const path = require('path')
 const fastify = require('fastify')({
   logger: true
@@ -16,21 +18,28 @@ fastify.register(require('point-of-view'), {
 
 // Config & Defaults
 
+const port       = process.env.PORT || '3000'
 const appVersion = process.env.VERSION || require('./../package.json').version
-const greeting = process.env.HELLO_GREETING || 'Hallo'
-const name = process.env.HELLO_NAME || 'Welt'
+const greeting   = process.env.HELLO_GREETING || 'Hello'
+const name       = process.env.HELLO_NAME || 'Welt'
+const color      = process.env.HELLO_COLOR || '#ff5757'
+const earthColor = process.env.EARTH_COLOR || '#57ffd1'
 
-// Declare a route
+// Route
+
 fastify.get('/', function (req, reply) {
   reply.view('home.hbs', {
 		greeting: greeting,
 		name: name,
+    color: color,
+    earthColor: earthColor,
 		version: appVersion
 	})
 })
 
-// Listen
-fastify.listen(3000, function (err, address) {
+// Listen Up
+
+fastify.listen(port, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
