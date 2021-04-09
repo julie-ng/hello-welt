@@ -22,24 +22,40 @@ jobs:
 
       - name: Determine Image Tag
         if: github.ref == 'refs/heads/release'
-        run: echo "imageTag=$(npm run --silent app-version)" >> $GITHUB_ENV
+        run: |
+          echo "imageTag=$(npm run --silent app-version)" >> $GITHUB_ENV
 
-      - name: Output Image Tag
+      - name: Debug - Image Tag
         run: |
           echo "${{ env.imageTag }}"
 
-      - name: Login to DockerHub
+      - name: Docker - Build
+        run: |
+          docker build -t ${{ env.imageName }}:${{ env.imageTag }} .
+
+      - name: Scan - Snyk Vulnerability Scanner
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: ${{ env.imageName }}:${{ env.imageTag }}
+          args: --file=Dockerfile
+
+      - name: Scan - Publish Results
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk.sarif
+
+      - name: Docker Hub - Login
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ${{ env.imageName }}:${{ env.imageTag }}
+      - name: Docker - Push
+        id: docker_push
+        run: |
+          docker push ${{ env.imageName }}:${{ env.imageTag }}
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Debug - Image digest
+        run: echo ${{ steps.docker_push.outputs.digest }}
