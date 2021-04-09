@@ -1,3 +1,5 @@
+'use strict'
+
 const log = require('pino')({ level: 'info' })
 const path = require('path')
 const healthcheck = require('./health')
@@ -66,7 +68,7 @@ fastify.listen(port, host, function (err, address) {
 // Error Handling
 // --------------
 
-async function closeGracefully(signal) {
+async function closeGracefully (signal) {
   log.warn(`Received signal to terminate: ${signal}`)
   await fastify.close()
   // await db.close() if we have a db connection in this app

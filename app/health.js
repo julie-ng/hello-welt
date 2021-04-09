@@ -1,7 +1,9 @@
+'use strict'
+
 const packageJson = require('./../package.json')
 
 function humanUptime (ms) {
-	uptime = ms/1000
+	const uptime = ms/1000
 	const days = Math.floor(uptime / 60 / 60 / 24)
 	const hours = Math.floor(uptime / 60 / 60) - (days * 24)
 	const minutes = Math.floor(uptime / 60) - (hours * 60)
