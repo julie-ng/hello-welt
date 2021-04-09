@@ -1,5 +1,7 @@
 # hello-welt
 
+[![ci](https://github.com/julie-ng/hello-welt/actions/workflows/ci.yaml/badge.svg)](https://github.com/julie-ng/hello-welt/actions/workflows/ci.yaml) [![docker](https://github.com/julie-ng/hello-welt/actions/workflows/docker.yaml/badge.svg)](https://github.com/julie-ng/hello-welt/actions/workflows/docker.yaml)
+
 - Simple Hello World [Fastify app](https://www.fastify.io/) for demos. 
 - Source for [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) Docker Image.
 
@@ -81,7 +83,7 @@ npm run dev
 which is a shortcut for
 
 ```
-NODE_ENV=development nodemon -w app app/app.js | pino-pretty
+NODE_ENV=development nodemon -w app app/server.js | pino-pretty
 ```
 
 ## References
