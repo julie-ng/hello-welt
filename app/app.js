@@ -77,12 +77,12 @@ async function closeGracefully(signal) {
 process.on('SIGINT', closeGracefully)
 process.on('SIGTERM', closeGracefully)
 
-process.on('uncaughtException', err => {
+process.on('uncaughtException', (err) => {
   log.error(`Uncaught Exception: ${err.message}`)
   process.exit(1)
 })
 
 process.on('unhandledRejection', (reason, promise) => {
-  log.error('Unhandled rejection at ', promise, `reason: ${err.message}`)
+  log.error('Unhandled rejection at ', promise, `reason: ${reason}`)
   process.exit(1)
 })
