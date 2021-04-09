@@ -1,7 +1,11 @@
-// Fastify & Plugins
 const log = require('pino')({ level: 'info' })
 const path = require('path')
+const healthcheck = require('./health')
 const fastify = require('fastify')({ logger: log })
+
+
+// Plugins
+// -------
 
 fastify.register(
   require('fastify-helmet')
@@ -14,7 +18,11 @@ fastify.register(require('point-of-view'), {
   root: path.join(__dirname)
 })
 
+fastify.register(healthcheck)
+
+
 // Config & Defaults
+// -----------------
 
 const port       = process.env.PORT || '3000'
 const host       = process.env.HOST || 'localhost'
@@ -24,7 +32,9 @@ const name       = process.env.HELLO_NAME || 'Welt'
 const color      = process.env.HELLO_COLOR || '#ff5757'
 const earthColor = process.env.EARTH_COLOR || '#00c2ca'
 
-// Route
+
+// Routes
+// ------
 
 fastify.get('/', function (req, reply) {
   reply.view('home.hbs', {
@@ -40,7 +50,9 @@ fastify.get('/fail', function (req, reply) {
   fastify.log('will fail') // Purposely trigger error for demos
 })
 
+
 // Listen Up
+// ---------
 
 fastify.listen(port, host, function (err, address) {
   if (err) {
@@ -50,7 +62,9 @@ fastify.listen(port, host, function (err, address) {
   fastify.log.info(`Server listening on ${address}`)
 })
 
+
 // Error Handling
+// --------------
 
 async function closeGracefully(signal) {
   log.warn(`Received signal to terminate: ${signal}`)
