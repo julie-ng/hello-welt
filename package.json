@@ -9,12 +9,15 @@
     "url": "https://github.com/julie-ng/hello-welt"
   },
   "description": "Simple containerized Node.js app for demos",
-  "main": "app/app.js",
+  "main": "app/server.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app/server.js",
     "dev": "NODE_ENV=development nodemon -w app | pino-pretty",
     "app-version": "node -e \"console.log(require('./package.json').version)\"",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "tap test",
+    "test:watch": "tap test --watch",
+    "preflight": "npm audit --production && npm run lint && npm run test"
   },
   "dependencies": {
     "fastify": "^3.14.0",
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "eslint": "^7.23.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "tap": "^15.0.2"
   }
 }
