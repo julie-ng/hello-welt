@@ -20,7 +20,12 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Determine Image Tag
+      - name: Tag with 'latest'
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "imageTag=latest" >> $GITHUB_ENV
+
+      - name: Tag with app version
         if: github.ref == 'refs/heads/release'
         run: |
           echo "imageTag=$(npm run --silent app-version)" >> $GITHUB_ENV
