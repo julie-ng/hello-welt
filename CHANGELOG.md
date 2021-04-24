@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/julie-ng/hello-welt/compare/v0.2.0...v0.2.1) (2021-04-24)
+
+
+### Bug Fixes
+
+* **docker:** startup command 🤦‍♀️ ([d428924](https://github.com/julie-ng/hello-welt/commit/d428924163249599594c7b3a17870c2a5d76dad2))
+
 ## [0.2.0](https://github.com/julie-ng/hello-welt/compare/v0.1.0...v0.2.0) (2021-04-09)
 
 
