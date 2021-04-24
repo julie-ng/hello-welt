@@ -10,4 +10,4 @@ COPY . /usr/src/app
 RUN npm ci --only=production
 
 USER node
-CMD ["dumb-init", "node", "app/app.js"]
+CMD ["dumb-init", "node", "app/server.js"]
