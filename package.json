@@ -29,6 +29,6 @@
   "devDependencies": {
     "eslint": "^7.23.0",
     "nodemon": "^2.0.7",
-    "tap": "^15.0.2"
+    "tap": "^15.0.9"
   }
 }
