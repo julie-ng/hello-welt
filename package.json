@@ -15,7 +15,7 @@
     "dev": "NODE_ENV=development nodemon -w app | pino-pretty",
     "app-version": "node -e \"console.log(require('./package.json').version)\"",
     "lint": "eslint .",
-    "test": "tap test",
+    "test": "tap test --coverage-report=lcov --no-browser",
     "test:watch": "tap test --watch",
     "preflight": "npm audit --production && npm run lint && npm run test"
   },
