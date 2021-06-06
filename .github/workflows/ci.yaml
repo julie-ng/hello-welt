@@ -28,3 +28,8 @@ jobs:
 
       - name: Unit Tests
         run: npm run test
+
+      - name: Publish to Code Climate
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${secrets.CC_TEST_REPORTER_ID}
