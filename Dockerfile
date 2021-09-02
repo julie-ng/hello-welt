@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:14.17.6-alpine3.11
 RUN apk add dumb-init
 
 ENV NODE_ENV production
