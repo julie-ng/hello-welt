@@ -40,7 +40,9 @@ module.exports = function (opts ={}) {
   })
 
   app.get('/fail', function (req, reply) {
-    app.log('will fail') // Purposely trigger error for demos
+    // Purposely trigger error for demos
+    // app.log function does not exist.
+    app.log('will fail')
   })
 
   return app
