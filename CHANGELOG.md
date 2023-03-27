@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/julie-ng/hello-welt/compare/v0.2.1...v0.3.0) (2023-03-27)
+
+
+### Features
+
+* add '/crash' to simulate crash for liveness probes ([a5df3d3](https://github.com/julie-ng/hello-welt/commit/a5df3d37be81dbdb713d1e9fbc3719ab24757dce))
+* add '/slow' to simulate memory leak ([df84511](https://github.com/julie-ng/hello-welt/commit/df845115fa68e0eca4b00862f69039919ca7d968))
+* **ci:** tag docker latest on main branch ([5f0015b](https://github.com/julie-ng/hello-welt/commit/5f0015b51178d9ba2b5c46ea01da35b1b4e64a3c))
+
 ### [0.2.1](https://github.com/julie-ng/hello-welt/compare/v0.2.0...v0.2.1) (2021-04-24)
 
 
