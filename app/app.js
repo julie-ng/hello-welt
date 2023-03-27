@@ -45,5 +45,9 @@ module.exports = function (opts ={}) {
     app.log('will fail')
   })
 
+  app.get('/crash', function (req, reply) {
+    process.exit(1)
+  })
+
   return app
 }
