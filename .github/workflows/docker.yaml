@@ -7,38 +7,49 @@ on:
       - 'main'
       - 'release'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   imageName: 'julieio/hello'
   imageTag: 'dev'
 
 jobs:
+  ci:
+    uses: ./.github/workflows/ci.yaml
+
   docker:
     runs-on: ubuntu-latest
+    needs: ci
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Tag with 'latest'
         if: github.ref == 'refs/heads/main'
-        run: |
-          echo "imageTag=latest" >> $GITHUB_ENV
+        run: echo "imageTag=latest" >> $GITHUB_ENV
 
       - name: Tag with app version
         if: github.ref == 'refs/heads/release'
-        run: |
-          echo "imageTag=$(npm run --silent app-version)" >> $GITHUB_ENV
+        run: echo "imageTag=$(npm run --silent app-version)" >> $GITHUB_ENV
 
       - name: Debug - Image Tag
         run: |
           echo "${{ env.imageTag }}"
+          echo "### App Version" >> $GITHUB_STEP_SUMMARY
+          echo "App version \`${{ env.imageTag }}\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Docker - Build
         run: |
           docker build -t ${{ env.imageName }}:${{ env.imageTag }} .
+          echo "### Docker" >> $GITHUB_STEP_SUMMARY
+          echo "Built Image \`${{ env.imageName }}:${{ env.imageTag }}\`" >> $GITHUB_STEP_SUMMARY
 
-      - name: Scan - Snyk Vulnerability Scanner
+
+      - name: Docker Scan - Snyk Vulnerability Scanner
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -61,6 +72,9 @@ jobs:
         id: docker_push
         run: |
           docker push ${{ env.imageName }}:${{ env.imageTag }}
+          echo "Pushed Image \`${{ env.imageName }}:${{ env.imageTag }}\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Debug - Image digest
-        run: echo ${{ steps.docker_push.outputs.digest }}
+        run: |
+          echo ${{ steps.docker_push.outputs.digest }}
+          echo "Image Digest \`${{ steps.docker_push.outputs.digest }}\`" >> $GITHUB_STEP_SUMMARY

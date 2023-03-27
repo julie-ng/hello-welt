@@ -1,6 +1,7 @@
 name: ci
 
 on:
+  workflow_call:
   push:
     branches:
       - 'dev'
@@ -12,16 +13,30 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
+          cache: 'npm'
+
+      - name: get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: npm install
         run: npm ci
 
       - name: Audit Dependencies
-        run: npm audit --production
+        run: npm audit --audit-level high
 
       - name: Linter
         run: npm run lint
