@@ -2,7 +2,7 @@
 
 const path = require('path')
 const healthcheck = require('./health')
-const helmet = require('fastify-helmet')
+const helmet = require('@fastify/helmet')
 const fastify = require('fastify')
 
 // --- Config ---
@@ -20,7 +20,7 @@ module.exports = function (opts ={}) {
 
   app.register(helmet)
   app.register(healthcheck)
-  app.register(require('point-of-view'), {
+  app.register(require('@fastify/view'), {
     engine: {
       handlebars: require('handlebars')
     },
