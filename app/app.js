@@ -50,13 +50,13 @@ module.exports = function (opts ={}) {
   })
 
   app.get('/slow', async function (req, reply) {
-    function setCallback() {
+    function setCallback () {
       const data = {
         counter: 0,
         hugeString: new Array(10000000).join('x')
       }
 
-      return function cb() {
+      return function cb () {
         data.counter++ // data object is now part of the callback's scope
         console.log(data.counter) // intentionally pollute logs
       }
