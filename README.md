@@ -36,17 +36,17 @@ This image can be used to demo the following for learning about **container orch
 
 | Best Practice | Route | Description |
 |:--|:--|:--|
-| **Health Check** | `/healthz` | Health check page with info for debugging. Returns 200. |
-| **Graceful Shutdown** | N/A | See [`app/server.js`](./app/server.js), which responds to `SIGINT` and `SIGTERM` to shutdown database, etc. |
+| Health Check | `/healthz` | Health check page with info for debugging. Returns 200. |
+| Graceful Shutdown | N/A | See [`app/server.js`](./app/server.js), which responds to `SIGINT` and `SIGTERM` to shutdown database, etc. |
 
 
 ### Problems
 
 | Problem | Route | Description |
 |:--|:--|:--|
-| **Error 500** | `/failz` | Returns 500 response and logs error to stdout. App continunes to run. |
-| **Crash** | `/crashz` | Simulate a crash. App needs to be restarted. |
-| **Memory Leak** | `/slowz` | Simulate a memory leak. App continues to function. |
+| Error 500 | `/failz` | Returns 500 response and logs error to stdout. App continunes to run. |
+| Crash | `/crashz` | Simulate a crash. App needs to be restarted. |
+| Memory Leak | `/slowz` | Simulate a memory leak. App continues to function. |
 
 
 # Development
