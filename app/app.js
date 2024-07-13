@@ -39,17 +39,17 @@ module.exports = function (opts ={}) {
     })
   })
 
-  app.get('/fail', function (req, reply) {
+  app.get('/failz', function (req, reply) {
     // Purposely trigger error for demos
     // app.log function does not exist.
     app.log('will fail')
   })
 
-  app.get('/crash', function (req, reply) {
+  app.get('/crashz', function (req, reply) {
     process.exit(1)
   })
 
-  app.get('/slow', async function (req, reply) {
+  app.get('/slowz', async function (req, reply) {
     function setCallback () {
       const data = {
         counter: 0,
