@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/julie-ng/hello-welt/compare/v0.4.0...v0.5.0) (2024-07-13)
+
+
+### Features
+
+* **actions:** add icons to more easily see which workflows are running ([db15f8f](https://github.com/julie-ng/hello-welt/commit/db15f8f7980815a6c406a0d1b4eaa845b433fba0))
+* **ci:** use node v20 ([259c827](https://github.com/julie-ng/hello-welt/commit/259c827d407f2676cf42d194f7e26ba120d36a7e))
+* **security:** update dependencies ([257ca61](https://github.com/julie-ng/hello-welt/commit/257ca61049d380a0ab4a4c35396b330e36be308a))
+
+
+### Bug Fixes
+
+* **ci:** ignore tap's ridiculous coverage requirement ([30c96a1](https://github.com/julie-ng/hello-welt/commit/30c96a17fc75fd0b48fe351d70295dfffea61dad))
+* **dockerfile:** vulnerabilities, update image versions ([961219b](https://github.com/julie-ng/hello-welt/commit/961219b3e9db53d2f3f6817a5f51242f4291f408))
+* **pipeline:** only fail docker high severity ([82a4b3d](https://github.com/julie-ng/hello-welt/commit/82a4b3d8ef75b29d1752efdc8f53f2813732ca11))
+
 ## [0.4.0](https://github.com/julie-ng/hello-welt/compare/v0.3.0...v0.4.0) (2023-03-27)
 
 ## [0.3.0](https://github.com/julie-ng/hello-welt/compare/v0.2.1...v0.3.0) (2023-03-27)
