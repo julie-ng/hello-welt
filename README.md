@@ -20,16 +20,16 @@ The following variables can be configured
 | `VERSION` | Version from `package.json` |
 | `HELLO_GREETING` | Hello |
 | `HELLO_NAME` | Welt |
-| `HELLO_COLOR` | #ff5757 |
-| `EARTH_COLOR` | #57ffd1 |
+| `HELLO_COLOR` | `#ff5757` |
+| `EARTH_COLOR` | `#57ffd1` |
 | `PORT` | 3000 |
 | `HOST` | `localhost` in development and `0.0.0.0` in production |
 
-# Demo
+# Demo 
 
 This image can be used to demo the following for learning about **container orchestration**.
 
-> [!NOTE]
+> [!NOTE]  
 > These demo routes use `z-pages` covention based on Google's internal practices to indicate that these endpoints are not part of the app's expected functionality.
 
 ### Best Practices
@@ -57,20 +57,20 @@ You can use this Docker image directly in demos or use it as a simple [Node.js a
 
 Pull the [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) public image from Docker Hub and then run it:
 
-```
+```bash
 docker pull julieio/hello:latest
 docker run -p 3000:3000 julieio/hello:latest
 ```
 
 Optionally - pass configuration via environment variables:
 
-```
+```bash
 docker run -p 3000:3000 -e HELLO_NAME=Julie julieio/hello:latest
 ```
 
 or build from scratch
 
-```
+```bash
 docker build . -t hello-welt
 docker run -p 3000:3000 hello-welt
 ```
@@ -96,19 +96,19 @@ and then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 For local development, we will use [pino-pretty](https://github.com/pinojs/pino-pretty) to format logs with color
 
-```
+```bash
 npm install -g pino-pretty
 ```
 
 We also also use [nodemon](https://nodemon.io/) to automatically restart the app when code changes. Use the `dev` command to put everything together
 
-```
+```bash
 npm run dev
 ```
 
 which is a shortcut for
 
-```
+```bash
 NODE_ENV=development nodemon -w app app/server.js | pino-pretty
 ```
 
