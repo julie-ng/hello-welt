@@ -15,11 +15,9 @@ function humanUptime (ms) {
 // - text fornat: https://tools.ietf.org/html/draft-inadarei-api-health-check-05
 // - html format: https://inadarei.github.io/rfc-healthcheck/
 function plugin (fastify, options, done) {
-	const startTime = Date.now()
-
-	fastify.get('/health', (request, reply) => {
+	fastify.get('/healthz', (request, reply) => {
 		const now = Date.now()
-		const uptimeMs =  now - startTime
+		const uptimeMs =   Math.floor(process.uptime()*1000)
 		const response = {
 			status: 'pass',
 			version: packageJson.version,
@@ -39,7 +37,7 @@ function plugin (fastify, options, done) {
 					observed_value: uptimeMs,
 					observed_unit: 'ms',
 					human_readable: humanUptime(uptimeMs),
-					time: (new Date()).toString()
+					current_time: (new Date()).toUTCString()
 				}]
 			},
 			links: {
