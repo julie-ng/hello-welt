@@ -4,10 +4,11 @@ const log = require('pino')({ level: 'info' })
 const server = require('./app')({ logger: log })
 const port = process.env.PORT || '3000'
 const host = process.env.HOST || 'localhost'
+const options = { port, host }
 
 // --- Server Listen ---
 
-server.listen(port, host, function (err, address) {
+server.listen(options, function (err, address) {
   if (err) {
     server.log.error(err)
     process.exit(1)
