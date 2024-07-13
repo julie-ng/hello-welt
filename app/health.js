@@ -16,7 +16,6 @@ function humanUptime (ms) {
 // - html format: https://inadarei.github.io/rfc-healthcheck/
 function plugin (fastify, options, done) {
 	fastify.get('/healthz', (request, reply) => {
-		const now = Date.now()
 		const uptimeMs =   Math.floor(process.uptime()*1000)
 		const response = {
 			status: 'pass',
