@@ -7,7 +7,7 @@
 - Simple Hello World [Fastify app](https://www.fastify.io/) for demos. 
 - Source for [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) Docker Image.
 
-<img src="./preview.png" alt="Hello Welt Preview" width="500">
+<img src="./preview-new.png" alt="Hello Welt Preview" width="500">
 
 _Earth icon by iconmonstr.com_
 
