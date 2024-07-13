@@ -21,14 +21,14 @@
   },
   "dependencies": {
     "fastify": "^4.15.0",
-    "@fastify/helmet": "^10.1.0",
+    "@fastify/helmet": "^11.1.0",
     "handlebars": "^4.7.7",
     "pino": "^8.11.0",
-    "@fastify/view": "^7.4.0"
+    "@fastify/view": "^9.1.0"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
     "nodemon": "^3.0.3",
-    "tap": "^18.7.0"
+    "tap": "^21.0.0"
   }
 }
