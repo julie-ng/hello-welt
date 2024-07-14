@@ -1,15 +1,12 @@
-# hello-welt
+# Hello Welt
 
-[![ci](https://github.com/julie-ng/hello-welt/actions/workflows/ci.yaml/badge.svg)](https://github.com/julie-ng/hello-welt/actions/workflows/ci.yaml) 
-[![docker](https://github.com/julie-ng/hello-welt/actions/workflows/docker.yaml/badge.svg)](https://github.com/julie-ng/hello-welt/actions/workflows/docker.yaml)
+Simple Hello World [Fastify](https://www.fastify.io/) Node.js app with [JSON based logging](https://getpino.io/) incl. log levels, graceful shutdown, readiness probes and built-in crash triggers, etc. for container orchestration demos. 
+
+<img src="https://raw.githubusercontent.com/julie-ng/hello-welt/main/preview.png" alt="Hello Welt Preview" width="600">
+
+[![ci](https://github.com/julie-ng/hello-welt/actions/workflows/ci.yaml/badge.svg)](https://github.com/julie-ng/hello-welt/actions/workflows/ci.yaml)&nbsp;
+[![docker](https://github.com/julie-ng/hello-welt/actions/workflows/docker.yaml/badge.svg)](https://github.com/julie-ng/hello-welt/actions/workflows/docker.yaml)&nbsp;
 [![Known Vulnerabilities](https://snyk.io/test/github/julie-ng/hello-welt/badge.svg)](https://snyk.io/test/github/julie-ng/hello-welt)
-
-- Simple Hello World [Fastify app](https://www.fastify.io/) for demos. 
-- Source for [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) Docker Image.
-
-<img src="./preview.png" alt="Hello Welt Preview" width="600">
-
-_Earth icon by iconmonstr.com_
 
 # Configuration
 
@@ -49,11 +46,9 @@ This image can be used to demo the following for learning about **container orch
 | Memory Leak | `/slowz` | Simulate a memory leak. App continues to function. |
 
 
-# Development
+# Usage
 
-You can use this Docker image directly in demos or use it as a simple [Node.js app](#nodejs-app)
-
-## Docker Image
+## Pull from Docker Hub
 
 Pull the [julieio/hello](https://hub.docker.com/repository/docker/julieio/hello) public image from Docker Hub and then run it:
 
@@ -75,24 +70,19 @@ docker build . -t hello-welt
 docker run -p 3000:3000 hello-welt
 ```
 
-## Node.js App
+## Local Development
 
-After cloning this repo, install dependencies 
+To use this image locally, clone this repo, install dependencies and run the app:
 
 ```bash
 git clone https://github.com/julie-ng/hello-welt
 npm install
-```
-
-Start the app
-
-```bash
 npm start
 ```
 
-and then open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Local Development
+### Logging
 
 For local development, we will use [pino-pretty](https://github.com/pinojs/pino-pretty) to format logs with color
 
@@ -106,14 +96,12 @@ We also also use [nodemon](https://nodemon.io/) to automatically restart the app
 npm run dev
 ```
 
-which is a shortcut for
-
-```bash
-NODE_ENV=development nodemon -w app app/server.js | pino-pretty
-```
-
 # References
 
 - [Heroku Blog: Let It Crash: Best Practices for Handling Node.js Errors on Shutdown](https://blog.heroku.com/best-practices-nodejs-errors) by Julián Duque
 - [Snyk Blog: 10 best practices to containerize Node.js web applications with Docker](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/) by 
 Liran Tal and Yoni Goldberg
+
+# License
+
+MIT
