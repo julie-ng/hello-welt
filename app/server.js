@@ -1,7 +1,7 @@
 'use strict'
 
 const log = require('pino')({ level: 'info' })
-const server = require('./app')({ logger: log })
+const server = require('./app')({ logger: log, trustProxy: true })
 const port = process.env.PORT || '3000'
 const host = process.env.HOST || 'localhost'
 const options = { port, host }

@@ -13,7 +13,7 @@ const name       = process.env.HELLO_NAME || 'Welt'
 const color      = process.env.HELLO_COLOR || '#ff5757'
 const earthColor = process.env.EARTH_COLOR || '#00c2ca'
 
-module.exports = function (opts ={}) {
+module.exports = function (opts = {}) {
   const app = fastify(opts)
 
   // --- Plugins ---
@@ -37,6 +37,22 @@ module.exports = function (opts ={}) {
       earthColor: earthColor,
       version: appVersion
     })
+  })
+
+  app.get('/requestz', function (req, reply) {
+    const res =  {
+      requestId: req.id,
+      hostname: req.hostname,
+      url: req.url,
+      query: req.query,
+      params: req.params,
+      ip: req.ip,
+      ips: req.ips,
+      routeOptions: req.routeOptions,
+      headers: req.headers,
+      body: req.body
+    }
+    return res
   })
 
   app.get('/failz', function (req, reply) {
