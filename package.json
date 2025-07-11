@@ -20,7 +20,7 @@
     "preflight": "npm audit --production && npm run lint && npm run test"
   },
   "dependencies": {
-    "fastify": "^4.15.0",
+    "fastify": "^4.26.0",
     "@fastify/helmet": "^11.1.0",
     "handlebars": "^4.7.7",
     "pino": "^8.11.0",
